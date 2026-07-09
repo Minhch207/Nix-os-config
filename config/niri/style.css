@@ -1,0 +1,190 @@
+@define-color base   #1e1e2e;
+@define-color mantle #181825;
+@define-color crust  #11111b;
+
+@define-color text     #cdd6f4;
+@define-color subtext0 #a6adc8;
+@define-color subtext1 #bac2de;
+
+@define-color surface0 #313244;
+@define-color surface1 #45475a;
+@define-color surface2 #585b70;
+
+@define-color overlay0 #6c7086;
+@define-color overlay1 #7f849c;
+@define-color overlay2 #9399b2;
+
+@define-color blue      #89b4fa;
+@define-color lavender  #b4befe;
+@define-color sapphire  #74c7ec;
+@define-color sky       #89dceb;
+@define-color teal      #94e2d5;
+@define-color green     #a6e3a1;
+@define-color yellow    #f6c177;
+@define-color peach     #fab387;
+@define-color maroon    #eba0ac;
+@define-color mauve     #E0B0FF;
+@define-color pink      #f5c2e7;
+@define-color flamingo  #f2cdcd;
+@define-color rosewater #f5e0dc;
+
+@define-color bg    #1a1b26;
+@define-color fg    #a9b1d6;
+@define-color blk   #32344a;
+@define-color red   #f7768e;
+@define-color grn   #9ece6a;
+@define-color ylw   #e0af68;
+@define-color blu   #7aa2f7;
+@define-color mag   #ad8ee6;
+@define-color cyn   #0db9d7;
+@define-color brblk #444b6a;
+@define-color wht   #ffffff;
+* {
+    font-family: "JetBrainsMono Nerd Font",monospace ,Symbols Nerd Font;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+window#waybar {
+    background-color: rgba(0,0,0,0.7);
+    color: @fg;
+    transition-property: background-color;
+    transition-duration: .5s;
+    
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+/*
+window#waybar.empty {
+    background-color: transparent;
+}
+window#waybar.solo {
+    background-color: #FFFFFF;
+}
+*/
+
+button {
+    /* Use box-shadow instead of border so the text isn't offset */
+    box-shadow: inset 0 -3px transparent;
+    /* Avoid rounded borders under each button name */
+    border: none;
+    border-radius: 0;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+/*
+#workspaces button:hover {
+    color: #56526e;
+    box-shadow: inherit;
+    text-shadow: inherit;
+    background: @crust;
+    border: @crust;
+}
+*/
+#workspaces button {
+    padding: 0 0px;
+    color: #56526e;
+    transition: color 200ms ease-in-out;
+    background: transparent;
+    border-bottom: 3px solid transparent;
+}
+#workspaces button.active {
+    color: @cyn/*@mauve*/;
+    border-bottom: 3px solid @cyn;
+}
+#clock,
+#battery,
+#cpu,
+#bluetooth,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-power,
+#tray,
+#mode,
+#idle_inhibitor,
+#scratchpad,
+#mpd {
+    padding: 0 9px;
+    color: @text;
+    border-radius: 15px;
+    margin: 5px 0;
+}
+
+#window,
+#workspaces {
+    margin: 0 2px;
+}
+
+/* If workspaces is the leftmost module, reduce left margin */
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 2px;
+}
+
+#clock {
+  color: @text;
+}
+
+#bluetooth {
+  color: #f5c2e7;
+}
+
+#pulseaudio {
+  color: @peach;
+}
+
+#pulseaudio.muted {
+  color: @surface2;
+}
+
+#network {
+  color: @blue;
+}
+
+#network.disconnected {
+  color: @surface2;
+}
+
+#memory {
+  color: @mag;
+}
+
+#battery {
+    color: @green;
+}
+
+#battery.warning:not(.charging) {
+    color: @red;
+}
+
+#custom-power {
+  color: @maroon;
+  margin-right: 5px;
+}
+
+#keyboard-state > label {
+    padding: 0 5px;
+}
+
+#keyboard-state > label.locked {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+#scratchpad {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+#scratchpad.empty {
+	background-color: transparent;
+}
+#window {
+  color: #e0def4;
+  margin-right: 30px;
+}
