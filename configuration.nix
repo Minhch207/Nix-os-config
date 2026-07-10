@@ -52,7 +52,7 @@
       # swap 
   swapDevices = [{
     device = "/var/lib/swapfile";
-    size = 8*1024; # 8 GiB
+    size = 16*1024; # 8 GiB
   }];
   zramSwap.enable = true;
   systemd.oomd.enable = true;
@@ -61,7 +61,7 @@
     isNormalUser = true;
     description = "Minh Chau";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [];
+    packages = with pkgs; [ tree ];
   };
 
   # Allow unfree packages
@@ -97,13 +97,15 @@
     accent = "mauve";
     loginBackground = true;
   })
-   catppuccin-cursors.mochaDark
    fastfetch
    nwg-look
    p7zip
    uv
    xarchiver
    cacert
+   nightfox-gtk-theme
+   bibata-cursors
+   github-cli
   ]; 
   fonts.packages = with pkgs; [
    nerd-fonts.jetbrains-mono
@@ -127,6 +129,7 @@
   hardware.bluetooth.enable = true;
   services.power-profiles-daemon.enable = true;
   services.upower.enable = true;
+  services.udisks2.enable = true;
   hardware.graphics = {
 	enable = true;
 	extraPackages = with pkgs; [
@@ -159,15 +162,16 @@
     dataDir = "/home/minhchau";
     configDir = "/home/minhchau/.config/syncthing";
   };
+  services.xserver.enable = true;
   services.displayManager.sddm = {
    enable = true;
-   wayland.enable = true;
    theme = "catppuccin-mocha-mauve";
-   settings = {
-    Theme = {
-      CursorTheme = "catppuccin-mocha-dark-cursors"; # the cursor name here matters
-    };
-   };
+   setupScript = ''
+    ${pkgs.xrdb}/bin/xrdb -merge - <<EOF
+    Xcursor.theme: Bibata-Modern-Classic
+    Xcursor.size: 24
+    EOF
+   '';
   };
 
   networking.firewall.allowedTCPPorts = [ 8384 ];

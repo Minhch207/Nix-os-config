@@ -175,7 +175,7 @@ spawn-sh-at-startup "wl-paste --watch cliphist store"
 
 gestures {
   hot-corners {
-    bottom-left
+    off
   }
 }
 

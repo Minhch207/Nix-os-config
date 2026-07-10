@@ -7,35 +7,49 @@
   programs.home-manager = {
     enable = true;
   };
-  
-  xdg.configFile."niri/config.kdl" = {
-    source = ./config/niri/config.kdl;
+  xdg.enable = true; 
+  xdg.configFile."niri" = {
+    source = ./config/niri;
     force = true;
+    recursive = true;
   };
   xdg.configFile."fastfetch/config.jsonc" = {
     source = ./config/fastfetch/config.jsonc;
     force = true;
   };
-  xdg.configFile."fish/config.fish" = {
-    source = ./config/fish/config.fish;
+  xdg.configFile."fish" = {
+    source = ./config/fish;
     force = true;
+    recursive = true;
   };
   xdg.configFile."kitty/kitty.conf" = {
     source = ./config/kitty/kitty.conf;
     force = true;
   };
-  xdg.configFile."noctalia/settings.toml" = {
-    source = ./config/noctalia/settings.toml;
+  xdg.configFile."noctalia" = {
+    source = ./config/noctalia;
     force = true;
+    recursive = true;
   };
-  
+  services.udiskie = {
+    enable = true;
+    settings = {
+        # workaround for
+        # https://github.com/nix-community/home-manager/issues/632
+        program_options = {
+            # replace with your favorite file manager
+            file_manager = "${pkgs.nemo-with-extensions}/bin/nemo";
+        };
+    };
+  };  
 
   home.pointerCursor = {
-    package = pkgs.catppuccin-cursors.mochaDark;
-    name = "catppuccin-mocha-dark-cursors";
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Modern-Classic";
     size = 24;
 
     gtk.enable = true;
     #x11.enable = true;
-  };  
+  };
+  home.pointerCursor.enable = true;
 }
