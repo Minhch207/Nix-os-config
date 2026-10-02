@@ -10,6 +10,7 @@ prefer-no-csd
 input {
     keyboard {
         xkb {
+          options "caps:escape"
                        // localectl set-x11-keymap.
         }
         repeat-delay 300
@@ -88,13 +89,7 @@ layout {
     background-color "transparent"
     // Set gaps around windows in logical pixels.
     gaps 5
-    shadow {
-        //on
-
-    }
-       center-focused-column "never"
-    
-
+    center-focused-column "never"
     default-column-display "normal"
     // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
     preset-column-widths {
@@ -111,23 +106,51 @@ layout {
 
    
     default-column-width {proportion 0.5; }
-    
     focus-ring {
+        width 0
+        active-color   "#eebd98"
+        inactive-color "#161310"
+        urgent-color   "#ffb4ab"
+    }
+    border {
+        off
+        active-color   "#eebd98"
+        inactive-color "#161310"
+        urgent-color   "#ffb4ab"
+    }
+
+    shadow {
+        off
+        //color "#00000070"
+    }
+
+    tab-indicator {
+        off
+        active-color   "#eebd98"
+        inactive-color "#b48866"
+        urgent-color   "#ffb4ab"
+    }
+
+    insert-hint {
+
+        color "#000000"
+    }
+    /*focus-ring {
         width 1.5
         inactive-color "#595959ab"
         active-gradient from="#8abcda" to="#b3ccdf" angle=45 
         //active-gradient from="#33ccffed" to="#00ff99ed" angle=45
-    }
+    }*/
 
     // You can also add a border. It's similar to the focus ring, but always visible.
-    border {
+    /*border {
         // The settings are the same as for the focus ring.
         // If you enable the border, you probably want to disable the focus ring.
         off
     }
     tab-indicator {
       off
-    }
+    }*/
     struts {
         // left 64
         // right 64
@@ -143,15 +166,23 @@ layer-rule {
     place-within-backdrop true
 }
 
-
 recent-windows {
+    highlight {
+        active-color "#eebd98"
+        urgent-color "#ffb4ab"
+        padding 30
+        corner-radius 10
+    }
+}
+
+/*recent-windows {
   highlight {
         active-color "#999999ff"
         urgent-color "#ff9999ff"
         padding 30
         corner-radius 10
   }
-}
+}*/
 // Add lines like this to spawn processes at startup.
 // Note that running niri as a session supports xdg-desktop-autostart,
 // which may be more convenient to use.
@@ -162,14 +193,8 @@ xwayland-satellite {
 }
 // This line starts waybar, a commonly used bar for Wayland compositors.
 spawn-at-startup "noctalia"
-//spawn-sh-at-startup "waybar &"
-spawn-sh-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &"
-//spawn-sh-at-startup "hyprpaper &"
-//spawn-sh-at-startup "mako &"
 spawn-sh-at-startup "fcitx5 -d &"
-//spawn-sh-at-startup "wlsunset -t 3977 -S 5:00 -s 20:00 &"
 spawn-sh-at-startup "wl-paste --watch cliphist store"
-//spawn-sh-at-startup "hypridle &"
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
 
@@ -369,5 +394,5 @@ binds {
     //Mod+Shift+P { power-off-monitors; }
 }
 
-include "./noctalia.kdl"
+//include "./noctalia.kdl"
 
